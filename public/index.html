@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get token device</title>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
+</head>
+
+<body>
+  <h1>Push Notification</h1>
+  <button onclick="SubscribeUser()">Get Token</button>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBQUhkVpCm_gNWN3sZJTRS17wIanzUaF5M",
+      authDomain: "lug-captone.firebaseapp.com",
+      projectId: "lug-captone",
+      storageBucket: "lug-captone.appspot.com",
+      messagingSenderId: "639566774506",
+      appId: "1:639566774506:web:7c7b29eaa6391401e39793",
+      measurementId: "G-HNSP0TR0MR"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const messaging = firebase.messaging();
+
+    function SubscribeUser() {
+      Notification.requestPermission().then(requestPermission => {
+        console.log(requestPermission)
+        if (requestPermission == 'granted') {
+          messaging.getToken({ vapidKey: "BKteB5NT6BUIA4Ayckkptnt5OiCRFT0h30E0JogzPVnCYkfLoUUjAVConB9KvYHjt14Dx3_qEtYfEaG-GZWe-zg"}).then(currentToken => {
+            console.log('token: '+currentToken)
+          })
+        }
+      }
+
+      )
+    }
+
+  </script>
+</body>
+
+</html>
